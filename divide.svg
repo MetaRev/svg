@@ -1,0 +1,40 @@
+<svg viewBox="0 0 900 60" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;background:transparent;">
+  <defs>
+    <!-- Star trail gradient -->
+    <linearGradient id="trailGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#a7fff5" stop-opacity="0" />
+      <stop offset="25%" stop-color="#a7fff5" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#ffb3ec" stop-opacity="0" />
+    </linearGradient>
+
+    <!-- Star glow gradient -->
+    <radialGradient id="starGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="40%" stop-color="#a7fff5" stop-opacity="0.9" />
+      <stop offset="70%" stop-color="#ffb3ec" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#ffb3ec" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Blur filter for glow -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Subtle baseline -->
+  <line x1="0" y1="30" x2="900" y2="30" stroke="url(#trailGrad)" stroke-width="1" opacity="0.15" />
+
+  <!-- Star trail (behind) -->
+  <rect id="trail" x="-300" y="29" width="250" height="2" fill="url(#trailGrad)" filter="url(#glow)" opacity="0.8">
+    <animate attributeName="x" values="-300;950;-300" dur="5s" repeatCount="indefinite" />
+  </rect>
+
+  <!-- Shooting star head (in front, brighter + larger) -->
+  <circle id="star" cx="-50" cy="30" r="6" fill="url(#starGrad)" filter="url(#glow)" opacity="1">
+    <animate attributeName="cx" values="-50;950;-50" dur="5s" repeatCount="indefinite" />
+  </circle>
+</svg>
